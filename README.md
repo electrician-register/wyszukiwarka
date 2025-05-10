@@ -6,10 +6,9 @@
   <title>Centralny Rejestr Elektryków</title>
   <link rel="icon" href="favicon.png" type="image/png" />
   <link rel="manifest" href="manifest.json" />
-
   <style>
     * {
-      margin: 5px;
+      margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
@@ -26,19 +25,54 @@
       flex-direction: column;
     }
 
-     .container {
+    .container {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 8px;
+      padding: 10px 20px;
     }
-      .logo {
-      width: 100px;
+
+    .logo {
+      width: 60px;
+      display: block;
+    }
+
+    .header-text {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      flex-wrap: wrap;
+      flex-direction: row;
+    }
+
+    @media (max-width: 768px) {
+      .header-text {
+        flex-direction: column;
+        align-items: center;
+      }
     }
 
     .text {
-      font-size: 36px;
+      font-size: 18px;
       line-height: 1.2;
+      font-weight: bold;
     }
+
+/* Modyfikacja dla wyśrodkowania napisu KREP.pl */
+.adres_http_inline {
+  font-size: 24px;
+  font-weight: bold;
+  white-space: nowrap;
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+      .adres_http_inline {
+    margin-top: 10px;  /* Oddzielamy napisy od siebie na małych ekranach */
+  }
 
     .text span {
       display: block;
@@ -52,17 +86,8 @@
       color: #003d7c;
     }
 
-    header {
-      display: flex;
-      align-items: center;
-      padding: 10px 20px;
-      background: transparent;
-    }
-
-    header img {
-      height: 200px;
-      max-width: none;
-      margin-top: -15px;
+    .red {
+      color: #FF0000;
     }
 
     .section-text {
@@ -97,7 +122,7 @@
       width: 250px;
       border: 1px solid #ccc;
       border-radius: 10px;
-      transition: tra nsform 0.2s ease;
+      transition: transform 0.2s ease;
     }
 
     .box:hover {
@@ -172,23 +197,6 @@
       text-decoration: underline;
     }
 
-    @media (max-width: 768px) {
-      header {
-        justify-content: center;
-      }
-
-      .grid {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .features {
-        flex-direction: column;
-        align-items: center;
-      }
-    }
-
-    /* styl logowania */
     .login-button {
       position: absolute;
       top: 20px;
@@ -246,14 +254,23 @@
 <body>
 
   <!-- Górna część strony z logo -->
-  <header>
-    <img src="logo.png" alt="Logo Centralny Rejestr Elektryków" />
-    <p>Centralny Rejestr Elektryków</p>
-  </header>
+  <div class="container">
+    <img src="logo.png" alt="Logo" class="logo" />
+    <div class="header-text">
+      <div class="text">
+        <span class="black">Krajowy</span>
+        <span class="black">Rejestr</span>
+        <span class="black">Elektryków</span>
+        <span class="blue">w Polsce</span>
+      </div>
+      <div class="adres_http_inline">
+        <span class="black">KREP</span><span class="red">.pl</span>
+      </div>
+    </div>
+  </div>
 
-  <!-- logowanie elementy, przyciski itd -->
+  <!-- logowanie -->
   <div class="login-button" onclick="openModal()" id="loginIcon">
-    <!-- Ikona ludzika -->
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
       <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8V22h19.2v-2.8c0-3.2-6.4-4.8-9.6-4.8z"/>
     </svg>
@@ -282,7 +299,6 @@
     function login(provider) {
       const iconDiv = document.getElementById("loginIcon");
       iconDiv.innerHTML = `
-        <!-- Ikona z "check" -->
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <path fill="green" d="M9 16.2l-4.2-4.2L3.4 13.4l5.6 5.6 12-12L19.2 5l-10.2 11.2z"/>
         </svg>
@@ -291,7 +307,7 @@
     }
   </script>
 
-  <!-- Środkowa część z kafelkami -->
+  <!-- Środkowa część -->
   <div class="content">
     <main class="grid">
       <a href="rejestracja.html" class="box">
@@ -324,6 +340,7 @@
         <h3>Rejestracja</h3>
         <p>Prosta rejestracja i szybki dostęp do danych</p>
       </div>
+    
     </section>
   </div>
 
@@ -337,4 +354,3 @@
 
 </body>
 </html>
-
